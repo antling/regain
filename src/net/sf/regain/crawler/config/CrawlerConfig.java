@@ -206,7 +206,6 @@ public interface CrawlerConfig {
   public boolean getStoreContentForPreview();
 
   /**
-   * Gibt die StartUrls zurück, bei denen der Crawler-Prozeß beginnen soll.
    *
    * @return Die StartUrls.
    */

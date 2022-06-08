@@ -23,7 +23,6 @@ package net.sf.regain.crawler.config;
 /**
  * Ein Eintrag in der Weißen Liste.
  * <p>
- * Die Wei�e Liste enthält Präfixe, von denen eine URL einen haben <i>mu�</i>,
  * um bearbeitet zu werden.
  * <p>
  * Des weiteren wird durch die Wei�e Liste festgelegt, welche Teile des Index

@@ -217,7 +217,6 @@ public class Profiler {
       countsPerMinute = measureCount * (60d * 1000d) / totalTime;
     }
 
-    // Berechnen, wie gro� die Labels sein m�ssen
     int maxStaticLabelLength = 12;                   // "Average time"
     int maxDynamicLabelLength = 10 + mUnit.length(); // "Completed " + mUnit
     int minLabelLength = Math.max(maxStaticLabelLength, maxDynamicLabelLength);

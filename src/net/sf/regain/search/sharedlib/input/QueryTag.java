@@ -40,7 +40,7 @@ import net.sf.regain.util.sharedtag.SharedTag;
 public class QueryTag extends SharedTag {
 
   /** The default size of the input field. */
-  private static final int INPUTFIELD_SIZE = 25;
+  private static final int INPUTFIELD_SIZE = 45;
 
 
   /**

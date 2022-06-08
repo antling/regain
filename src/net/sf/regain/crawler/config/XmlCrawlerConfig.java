@@ -958,8 +958,6 @@ public class XmlCrawlerConfig implements CrawlerConfig {
   }
 
   /**
-   * Gibt die StartUrls zurück, bei denen der Crawler-Prozeß beginnen soll.
-   *
    * @return Die StartUrls.
    */
   @Override

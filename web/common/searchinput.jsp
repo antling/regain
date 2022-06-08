@@ -25,7 +25,7 @@
           <form name="search" action="search.jsp" method="get">
             <p class="searchinput">
               <b><search:msg key="searchFor"/>: </b>
-              <input name="query" size="30"/>
+              <input name="query" size="45"/>
               <search:input_order/>
               <search:input_submit text="{msg:search}"/>
             </p>

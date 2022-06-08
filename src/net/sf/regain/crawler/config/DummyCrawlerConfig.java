@@ -270,7 +270,6 @@ public class DummyCrawlerConfig implements CrawlerConfig {
 
 
   /**
-   * Gibt die StartUrls zur�ck, bei denen der Crawler-Proze� beginnen soll.
    *
    * @return Die StartUrls.
    */

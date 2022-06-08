@@ -1152,7 +1152,7 @@
    | This target depends on clean-runtime to be sure that the runtime
    | directory contains no stuff we don't want to be destributed.
    +-->
-  <target name="public-no-installer" depends="clean-all, runtime, test-integration, doc">
+  <target name="public-no-installer" depends="clean-all, runtime, doc">
     <mkdir dir="build/public"/>
     <zip destfile="build/public/${programname.file}_v${version}_server.zip">
       <zipfileset prefix="${programname.file}/runtime/crawler"

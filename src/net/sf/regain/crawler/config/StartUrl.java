@@ -23,7 +23,6 @@ package net.sf.regain.crawler.config;
 /**
  * enthält die Daten einer Start-URL.
  * <p>
- * Eine Start-URL ist ein Startpunkt an dem der Crawler-Proze� beginnt.
  *
  * @author Til Schneider, www.murfman.de
  */

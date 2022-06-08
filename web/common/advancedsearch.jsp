@@ -26,7 +26,7 @@
         <table>
           <tr>
             <td><search:msg key="searchFor"/>:</td>
-            <td><input name="query" size="40"/></td>
+            <td><input name="query" size="45"/></td>
           </tr>
           <tr>
             <td><search:msg key="fileExtension"/>:</td>
