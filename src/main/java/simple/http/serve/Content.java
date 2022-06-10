@@ -1,0 +1,125 @@
+/*
+ * Content.java December 2002
+ *
+ * Copyright (C) 2002, Niall Gallagher <niallg@users.sf.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General 
+ * Public License along with this library; if not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, 
+ * Boston, MA  02111-1307  USA
+ */
+  
+package simple.http.serve;
+
+import simple.util.net.Parameters;
+import java.io.OutputStream;
+import java.io.IOException;
+
+/**
+ * The <code>Content</code> interface is used to provide an interface
+ * to content within a <code>Context</code>. The contents represented
+ * by the <code>Content</code> implementation could be dynamic or
+ * static depending on the <code>Context</code> that served it.
+ * <p>
+ * Static content represented by resources on the underlying file
+ * system such as files are represented as <code>Content</code>
+ * objects to provide a simple means of writing that content to HTTP
+ * clients using an <code>OutputStream</code>. 
+ * <p>
+ * The <code>Content</code> interface can also be used to provide a
+ * means for writing dynamic content. Dynamic content such as that
+ * produced by <code>simple.http.load.Service</code> objects can be
+ * implemented as a <code>Content</code>. The implementation can then
+ * be presented to the client using the <code>write</code> methods.
+ * Support for the Model View Controller (MVC) design pattern can be
+ * found in the <code>write(OutputStream,&nbsp;Parameters)</code> 
+ * method. This enables <code>Service</code> objects to act as the 
+ * Controller for content such as HTML to provide a View for dynamic 
+ * content that is configured using the issued parameters (Model).
+ * <pre>
+ *
+ *    Parameters model = request.getParameters();
+ *    Content content = context.getContent("/view.shtml");
+ *    content.write(out, model);
+ *
+ * </pre>
+ * The above code gives an example of how dynamic content from a
+ * <code>Content</code> object could be used to provide configuration
+ * to generated output. The difference between <code>Content</code>
+ * implementations and <code>Service</code> implementations is the
+ * lifecycle of the instance. In general <code>Service</code> objects
+ * once loaded will remain as an instance within the Virtual Machine
+ * for an extended peroid of time, however content objects are used
+ * to provide supplemental functionality and are generally transient.
+ * <p>
+ * In general (depending on the <code>Context</code>) the instances
+ * of the <code>Content</code> interface should not contain state
+ * that lasts beyond the scope of the <code>write</code> method. So
+ * for example a content object should not declare a counter that is
+ * used to embed the number of visits to a page, think of CGI.
+ *
+ * @author Niall Gallagher
+ *
+ * @see simple.http.serve.ContentFactory
+ */
+public interface Content {
+
+   /**
+    * This writes the contents of the instance to the issued stream.
+    * This provides a means for the <code>Content</code> to write
+    * its contents to an <code>OutputStream</code>. Typically this
+    * is used by <code>Service</code> objects when data is to be 
+    * provided to the client using the <code>Response</code>. Any
+    * problems in writing the contents results in an exception.
+    *
+    * @param out this is the stream to write the content with
+    *
+    * @exception IOException thrown if there is an I/O problem
+    */
+   public void write(OutputStream out) throws IOException;
+   
+   /**
+    * This writes the contents of the instance to the issued stream.
+    * This provides a means for the <code>Content</code> to write
+    * its contents to an <code>OutputStream</code>. Typically this
+    * is used by <code>Service</code> objects when data is to be 
+    * provided to the client using the <code>Response</code>. Any
+    * problems in writing the contents results in an exception.
+    * <p>
+    * The data given to this <code>write</code> method is used to
+    * provide configuration to the resulting output. The resulting
+    * output can use the issued parameters to acquire properties 
+    * which can be embedded in the resulting content.
+    *
+    * @param out this is the stream to write the content with
+    * @param data this provides the implementation with state
+    *
+    * @exception IOException thrown if there is an I/O problem
+    */
+   public void write(OutputStream out, Parameters data) 
+      throws IOException;
+
+   /**
+    * The content that is dynamically generated by the object
+    * us written as a specific MIME type, including charset
+    * information which determines the content encoding. For
+    * example if the output was HTML written using UTF-8 
+    * format then this would return "text/html; charset=utf-8".
+    *
+    * @return returns the MIME type of the generated content
+    */
+   public String getMimeType(); 
+}
+
+
+
+
